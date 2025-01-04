@@ -44,6 +44,7 @@ public class DashboardActivity extends AppCompatActivity {
     private void setupClickListeners() {
         ImageButton exerciseButton = findViewById(R.id.btn_exercises);
         ImageButton videoButton = findViewById(R.id.btn_video);
+        ImageButton trackButton = findViewById(R.id.tarch_btn);
         
         exerciseButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ExerciseActivity.class);
@@ -52,6 +53,11 @@ public class DashboardActivity extends AppCompatActivity {
         
         videoButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ExerciseActivity.class);
+            startActivity(intent);
+        });
+        
+        trackButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrackingToolsActivity.class);
             startActivity(intent);
         });
     }
