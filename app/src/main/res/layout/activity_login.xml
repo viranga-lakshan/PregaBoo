@@ -46,6 +46,16 @@
             android:text="I AM A MIDWIFE"
             android:textColor="@color/white" />
 
+
+        <Button
+            android:id="@+id/buttonaAdin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_button_white"
+            android:text="I AM ADMIN"
+            android:textColor="@color/white" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

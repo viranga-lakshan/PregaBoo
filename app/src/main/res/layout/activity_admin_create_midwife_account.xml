@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFEBEE">
+
+    <EditText
+        android:id="@+id/midwifeNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Midwife Name"
+        android:layout_margin="16dp"/>
+
+    <EditText
+        android:id="@+id/midwifeEmailInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Midwife Email"
+        android:layout_below="@id/midwifeNameInput"
+        android:layout_margin="16dp"/>
+
+    <EditText
+        android:id="@+id/midwifePhoneInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Midwife Phone"
+        android:layout_below="@id/midwifeEmailInput"
+        android:layout_margin="16dp"/>
+
+    <Spinner
+        android:id="@+id/midwifeDistrictSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/midwifePhoneInput"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/createMidwifeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Midwife Account"
+        android:layout_below="@id/midwifeDistrictSpinner"
+        android:layout_margin="16dp"/>
+</RelativeLayout>

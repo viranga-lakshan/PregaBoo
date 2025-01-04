@@ -15,6 +15,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button buttonExpecting = findViewById(R.id.buttonExpecting);
         Button buttonMidwife = findViewById(R.id.buttonExpecting2);
+        Button buttonAdmin = findViewById(R.id.buttonaAdin);
 
         buttonExpecting.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, LoginActivity2.class);
@@ -23,6 +24,11 @@ public class LoginActivity extends AppCompatActivity {
 
         buttonMidwife.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, MidwifeLogin.class);
+            startActivity(intent);
+        });
+
+        buttonAdmin.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, AdminCreateMidwifeAccount.class);
             startActivity(intent);
         });
     }

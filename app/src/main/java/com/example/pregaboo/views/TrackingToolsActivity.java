@@ -9,23 +9,16 @@ import com.example.pregaboo.R;
 
 public class TrackingToolsActivity extends AppCompatActivity {
     private CardView pregnancyTrackerCard;
-    private ImageButton weightTrackerImageButton;
+    private ImageButton kickCounterImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking_tools);
 
-        weightTrackerImageButton = findViewById(R.id.weightTrackerImageButton);
-        pregnancyTrackerCard = findViewById(R.id.pregnancyTrackerCard);
-        
-        weightTrackerImageButton.setOnClickListener(v -> {
-            Intent intent = new Intent(TrackingToolsActivity.this, ShowMotherWeight.class);
-            startActivity(intent);
-        });
-
-        pregnancyTrackerCard.setOnClickListener(v -> {
-            Intent intent = new Intent(TrackingToolsActivity.this, ShowMotherWeight.class);
+        kickCounterImageButton = findViewById(R.id.kickCounterImageButton);
+        kickCounterImageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TrackingToolsActivity.this, KickCounterActivity.class);
             startActivity(intent);
         });
     }
