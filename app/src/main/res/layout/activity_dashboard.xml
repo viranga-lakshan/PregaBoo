@@ -67,7 +67,7 @@
 
                     <ImageButton
                         android:scaleType="centerCrop"
-                        android:id="@+id/imageButton"
+                        android:id="@+id/tarch_btn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:srcCompat="@drawable/img_33" />

@@ -7,6 +7,7 @@ import com.example.pregaboo.R;
 import com.example.pregaboo.database.DataManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import android.widget.ImageButton;
 
 public class DashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -21,6 +22,7 @@ public class DashboardActivity extends AppCompatActivity {
         dataManager = new DataManager(this);
 
         checkUserAuthentication();
+        setupClickListeners();
     }
 
     private void checkUserAuthentication() {
@@ -37,5 +39,20 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         checkUserAuthentication();
+    }
+
+    private void setupClickListeners() {
+        ImageButton exerciseButton = findViewById(R.id.btn_exercises);
+        ImageButton videoButton = findViewById(R.id.btn_video);
+        
+        exerciseButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ExerciseActivity.class);
+            startActivity(intent);
+        });
+        
+        videoButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ExerciseActivity.class);
+            startActivity(intent);
+        });
     }
 } 
