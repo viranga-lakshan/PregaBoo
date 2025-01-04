@@ -1,167 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Header with Profile -->
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
+        android:background="@drawable/gradient_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
-        tools:context=".BabyProfileActivity">
-
-        <!-- Profile Picture -->
         <ImageView
             android:id="@+id/profilePicture"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="28dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:background="@drawable/baseline_account_circle_24"
             android:scaleType="centerCrop"
+            />
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Username -->
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Baby's Name"
+            android:layout_marginTop="8dp"
+            android:text="Vimasha"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profilePicture" />
+            android:textStyle="bold" />
 
-        <!-- Back Arrow -->
-        <ImageView
-            android:id="@+id/backArrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="Back"
-            android:src="@drawable/baseline_arrow_back_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Follow Stats Section -->
-        <LinearLayout
-            android:id="@+id/statsLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/userDetails"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/username">
+            android:text="India • English"
+            android:textSize="14sp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/followings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="0\nBaby's Friends"
-                android:textAlignment="center" />
+    <!-- Back Button -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"/>
 
-            <TextView
-                android:id="@+id/posts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="0\nBaby's Posts"
-                android:textAlignment="center" />
+    <!-- Button Row -->
+    <LinearLayout
+        android:layout_width="411dp"
+        android:layout_height="228dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
 
-            <TextView
-                android:id="@+id/followers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="0\nBaby's Followers"
-                android:textAlignment="center" />
-        </LinearLayout>
-
-        <!-- Buttons Section -->
+        <!-- First Vertical LinearLayout with 3 Buttons -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/statsLayout">
-
-            <!-- Edit Profile Button -->
-            <Button
-                android:id="@+id/editProfileButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Edit Baby Profile" />
-
-            <!-- Action Buttons -->
+            app:layout_constraintEnd_toStartOf="@id/secondLayout">
 
             <Button
-                android:id="@+id/rateApp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rate Baby Care App" />
+                style="@style/CustomButtonStyle"
+                android:color="#6200EE"
+                android:text="Growth" />
 
             <Button
-                android:id="@+id/shoppingCart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:text="Baby Shopping Cart"
-                android:textColor="@android:color/white" />
+                style="@style/CustomButtonStyle"
+                android:text="Vaccine" />
 
             <Button
-                android:id="@+id/reminders"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Baby Reminders" />
-
-            <Button
-                android:id="@+id/deliveryAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Baby Delivery Address" />
-
-            <Button
-                android:id="@+id/feedback"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Baby Feedback" />
-
-            <Button
-                android:id="@+id/termsConditions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Terms and Conditions" />
-
-            <Button
-                android:id="@+id/ordersHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Baby's Health Records" />
-
-            <Button
-                android:id="@+id/editPregnancyData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Edit Baby's Information" />
-
-            <Button
-                android:id="@+id/deleteAccount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delete Baby Profile"
-                android:textColor="@android:color/holo_red_dark" />
+                style="@style/CustomButtonStyle"
+                android:text="Sleep" />
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        <!-- Second Vertical LinearLayout with 3 Buttons -->
+        <LinearLayout
+            android:id="@id/secondLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                style="@style/CustomButtonStyle"
+                android:text="Diaper" />
+
+            <Button
+                style="@style/CustomButtonStyle"
+                android:text="Doctor Visits" />
+
+            <Button
+                style="@style/CustomButtonStyle"
+                android:text="Button 6" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

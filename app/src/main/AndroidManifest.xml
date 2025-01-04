@@ -19,7 +19,7 @@
         android:theme="@style/Theme.PregaBoo"
         tools:targetApi="31">
         <activity
-            android:name=".views.DatepickerActivity"
+            android:name=".views.Datepicker"
             android:exported="false" />
         <activity
             android:name=".views.ShowMotherWeight"
@@ -94,6 +94,15 @@
             android:exported="false" />
         <activity
             android:name=".views.TrackingToolsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.MomProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.KickCounterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.KickController"
             android:exported="false" />
     </application>
 

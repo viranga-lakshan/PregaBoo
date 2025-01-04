@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 public class DashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DataManager dataManager;
+    private ImageButton profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,13 @@ public class DashboardActivity extends AppCompatActivity {
 
         checkUserAuthentication();
         setupClickListeners();
+
+        profileButton = findViewById(R.id.profileButton);
+        
+        profileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, MomProfileActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void checkUserAuthentication() {
