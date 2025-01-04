@@ -9,12 +9,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pregaboo.R;
 import com.example.pregaboo.controllers.WeightController;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.pregaboo.adapters.WeightJournalAdapter;
+import com.example.pregaboo.models.Weight;
+import com.google.firebase.firestore.DocumentSnapshot;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShowMotherWeight extends AppCompatActivity {
     private Spinner weekSpinner;
     private EditText weightInput;
     private Button addWeightButton;
     private WeightController weightController;
+    private RecyclerView journalRecyclerView;
+    private WeightJournalAdapter adapter;
+    private List<Weight> weightList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +35,17 @@ public class ShowMotherWeight extends AppCompatActivity {
         initializeViews();
         setupWeekSpinner();
         setupClickListeners();
+        loadWeights();
     }
 
     private void initializeViews() {
         weekSpinner = findViewById(R.id.weekSpinner);
         weightInput = findViewById(R.id.weightInput);
         addWeightButton = findViewById(R.id.addWeightButton);
+        journalRecyclerView = findViewById(R.id.journalRecyclerView);
+        journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new WeightJournalAdapter(weightList);
+        journalRecyclerView.setAdapter(adapter);
     }
 
     private void setupWeekSpinner() {
@@ -62,6 +77,7 @@ public class ShowMotherWeight extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Weight saved successfully", Toast.LENGTH_SHORT).show();
                     weightInput.setText("");
+                    loadWeights();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Failed to save weight: " + e.getMessage(), 
@@ -71,5 +87,22 @@ public class ShowMotherWeight extends AppCompatActivity {
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Please enter a valid weight", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void loadWeights() {
+        weightController.getWeights()
+            .addOnSuccessListener(queryDocumentSnapshots -> {
+                weightList.clear();
+                for (DocumentSnapshot document : queryDocumentSnapshots) {
+                    Weight weight = document.toObject(Weight.class);
+                    if (weight != null) {
+                        weightList.add(weight);
+                    }
+                }
+                adapter.updateWeights(weightList);
+            })
+            .addOnFailureListener(e -> 
+                Toast.makeText(this, "Failed to load weights", Toast.LENGTH_SHORT).show()
+            );
     }
 }
