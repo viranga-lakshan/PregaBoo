@@ -39,10 +39,10 @@ public class GoogleSigningLocation extends AppCompatActivity {
                 return;
             }
 
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("selected_district", selectedDistrict);
-            resultIntent.putExtra("contact_number", contact);
-            setResult(RESULT_OK, resultIntent);
+            Intent intent = new Intent(this, DatepickerActivity.class);
+            intent.putExtra("contact_number", contact);
+            intent.putExtra("selected_district", selectedDistrict);
+            startActivity(intent);
             finish();
         });
     }

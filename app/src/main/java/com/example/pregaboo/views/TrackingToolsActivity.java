@@ -1,22 +1,32 @@
 package com.example.pregaboo.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Button;
-import android.widget.ImageView;
+import androidx.cardview.widget.CardView;
+import android.widget.ImageButton;
 import com.example.pregaboo.R;
 
 public class TrackingToolsActivity extends AppCompatActivity {
+    private CardView pregnancyTrackerCard;
+    private ImageButton weightTrackerImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking_tools);
 
-        // Set up back button click listener
-        LinearLayout backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> finish());
+        weightTrackerImageButton = findViewById(R.id.weightTrackerImageButton);
+        pregnancyTrackerCard = findViewById(R.id.pregnancyTrackerCard);
+        
+        weightTrackerImageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TrackingToolsActivity.this, ShowMotherWeight.class);
+            startActivity(intent);
+        });
+
+        pregnancyTrackerCard.setOnClickListener(v -> {
+            Intent intent = new Intent(TrackingToolsActivity.this, ShowMotherWeight.class);
+            startActivity(intent);
+        });
     }
 } 

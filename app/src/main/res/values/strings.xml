@@ -30,4 +30,30 @@
         <item>Trincomalee</item>
         <item>Vavuniya</item>
     </string-array>
+
+    <string-array name="weeks_array">
+        <item>1 week</item>
+        <item>2 weeks</item>
+        <item>3 weeks</item>
+        <item>4 weeks</item>
+        <item>5 weeks</item>
+        <item>6 weeks</item>
+        <item>7 weeks</item>
+        <item>8 weeks</item>
+        <item>9 weeks</item>
+        <item>10 weeks</item>
+        <item>11 weeks</item>
+        <item>12 weeks</item>
+        <item>13 weeks</item>
+        <item>14 weeks</item>
+        <item>15 weeks</item>
+        <item>16 weeks</item>
+        <item>17 weeks</item>
+        <item>18 weeks</item>
+        <item>19 weeks</item>
+        <item>20 weeks</item>
+    </string-array>
+
+
+
 </resources>

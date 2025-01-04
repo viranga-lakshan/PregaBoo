@@ -19,7 +19,7 @@
         android:theme="@style/Theme.PregaBoo"
         tools:targetApi="31">
         <activity
-            android:name=".views.Datepicker"
+            android:name=".views.DatepickerActivity"
             android:exported="false" />
         <activity
             android:name=".views.ShowMotherWeight"
