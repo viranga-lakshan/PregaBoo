@@ -26,11 +26,20 @@
         android:layout_below="@id/midwifeEmailInput"
         android:layout_margin="16dp"/>
 
+    <EditText
+        android:id="@+id/midwifePasswordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Midwife Password"
+        android:layout_below="@id/midwifePhoneInput"
+        android:layout_margin="16dp"
+        android:inputType="textPassword"/>
+
     <Spinner
         android:id="@+id/midwifeDistrictSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/midwifePhoneInput"
+        android:layout_below="@id/midwifePasswordInput"
         android:layout_margin="16dp"/>
 
     <Button

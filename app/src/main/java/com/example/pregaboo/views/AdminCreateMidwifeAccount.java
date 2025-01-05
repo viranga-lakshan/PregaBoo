@@ -16,6 +16,7 @@ public class AdminCreateMidwifeAccount extends AppCompatActivity {
     private EditText midwifeNameInput;
     private EditText midwifeEmailInput;
     private EditText midwifePhoneInput;
+    private EditText midwifePasswordInput;
     private Spinner midwifeDistrictSpinner;
     private Button createMidwifeButton;
     private FirebaseFirestore db;
@@ -28,6 +29,7 @@ public class AdminCreateMidwifeAccount extends AppCompatActivity {
         midwifeNameInput = findViewById(R.id.midwifeNameInput);
         midwifeEmailInput = findViewById(R.id.midwifeEmailInput);
         midwifePhoneInput = findViewById(R.id.midwifePhoneInput);
+        midwifePasswordInput = findViewById(R.id.midwifePasswordInput);
         midwifeDistrictSpinner = findViewById(R.id.midwifeDistrictSpinner);
         createMidwifeButton = findViewById(R.id.createMidwifeButton);
         db = FirebaseFirestore.getInstance();
@@ -50,14 +52,15 @@ public class AdminCreateMidwifeAccount extends AppCompatActivity {
         String name = midwifeNameInput.getText().toString().trim();
         String email = midwifeEmailInput.getText().toString().trim();
         String phone = midwifePhoneInput.getText().toString().trim();
+        String password = midwifePasswordInput.getText().toString().trim();
         String district = midwifeDistrictSpinner.getSelectedItem().toString().trim();
 
-        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || district.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || district.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Midwife midwife = new Midwife(name, email, phone, district);
+        Midwife midwife = new Midwife(name, email, phone, password, district);
         db.collection("midwives")
                 .add(midwife)
                 .addOnSuccessListener(documentReference -> {
@@ -80,6 +83,7 @@ public class AdminCreateMidwifeAccount extends AppCompatActivity {
         midwifeNameInput.setText("");
         midwifeEmailInput.setText("");
         midwifePhoneInput.setText("");
+        midwifePasswordInput.setText("");
         midwifeDistrictSpinner.setSelection(0);
     }
 }
