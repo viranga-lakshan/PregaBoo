@@ -3,122 +3,17 @@
     android:layout_height="match_parent"
     android:background="#FFEBEE">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_38"
-        android:alpha="0.3" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select the mom to update details"
+        android:textColor="#FF4081"
+        android:textSize="20sp"
+        android:layout_margin="16dp" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/momRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="#FFFFFF"
-        android:alpha="0.9"
-        android:layout_centerInParent="true">
-
-        <!-- Instruction Label -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Select the mom to update details"
-            android:textColor="#FF4081"
-            android:textSize="20sp" />
-
-        <!-- Scrollable Table Content -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"> <!-- Set a fixed height for scrolling -->
-
-            <TableLayout
-                android:id="@+id/momTableLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="1"
-                android:background="#FFFFFF">
-
-                <!-- Table Header -->
-                <TableRow
-                    android:background="#FF80AB"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mom ID"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Name"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pregnancy Date"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:padding="8dp" />
-                </TableRow>
-
-                <!-- Example Table Row -->
-                <!-- Repeat this TableRow for each mom entry from the database -->
-                <TableRow
-                    android:id="@+id/momTableRow"
-                    android:background="#F8BBD0"
-                    android:padding="8dp"
-                    android:clickable="true"
-                    android:onClick="onMomRowClick">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="M123"
-                        android:textColor="#000000"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Jane Doe"
-                        android:textColor="#000000"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="123-456-7890"
-                        android:textColor="#000000"
-                        android:padding="8dp" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Go"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:padding="8dp"
-                        android:background="?attr/selectableItemBackground" />
-                </TableRow>
-
-                <!-- Add more TableRows dynamically in your Java/Kotlin code -->
-            </TableLayout>
-        </ScrollView>
-    </LinearLayout>
+       />
 </RelativeLayout>
