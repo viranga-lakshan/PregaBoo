@@ -4,6 +4,7 @@
     android:background="#FFEBEE">
 
     <TextView
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select the mom to update details"
@@ -11,9 +12,27 @@
         android:textSize="20sp"
         android:layout_margin="16dp" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/noMomsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No moms found in your district."
+        android:textColor="#FF4081"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/momRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       />
+        android:layout_below="@id/titleTextView"
+        android:layout_marginTop="16dp" />
 </RelativeLayout>
