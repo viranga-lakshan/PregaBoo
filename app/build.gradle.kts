@@ -44,27 +44,30 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(libs.activity)
-    
+
     // YouTube API dependencies
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
     implementation("com.google.apis:google-api-services-youtube:v3-rev20240213-2.0.0")
     implementation("com.google.api-client:google-api-client-android:2.2.0")
-    
+
     // Google Sign In and Play Services
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.android.gms:play-services-base:18.3.0")
     implementation("com.google.android.gms:play-services-location:21.2.0")
-    
+
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
-    
+
     // Firebase dependencies
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
-    
+
+    // RecyclerView dependency
+   implementation("androidx.recyclerview:recyclerview:1.3.2")
+
     // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

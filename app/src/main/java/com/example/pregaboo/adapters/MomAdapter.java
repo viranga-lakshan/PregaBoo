@@ -33,9 +33,9 @@ public class MomAdapter extends RecyclerView.Adapter<MomAdapter.MomViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MomViewHolder holder, int position) {
         Mom mom = momList.get(position);
-        holder.momIdTextView.setText(mom.getMomId());
-        holder.nameTextView.setText(mom.getName());
-        holder.pregnancyDateTextView.setText(String.valueOf(mom.getPregnancyDate()));
+        holder.momIdTextView.setText("Mom ID: " + mom.getMomId());
+        holder.nameTextView.setText("Name: " + mom.getName());
+        holder.pregnancyDateTextView.setText("Pregnancy Date: " + String.valueOf(mom.getPregnancyDate()));
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, MomProfileActivity.class);
