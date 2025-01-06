@@ -21,7 +21,7 @@ public class LoginActivity2 extends AppCompatActivity {
     private static final String TAG = "LoginActivity2";
     private static final int RC_SIGN_IN = 9001;
     private static final int DISTRICT_SELECTION_REQUEST = 1002;
-    
+
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
@@ -134,15 +134,34 @@ public class LoginActivity2 extends AppCompatActivity {
     }
 
     private void saveNewUser(FirebaseUser firebaseUser, String district, String contact) {
-        User newUser = new User(
-            firebaseUser.getUid(),
-            firebaseUser.getDisplayName(),
-            firebaseUser.getEmail(),
-            district,
-            contact
-        );
-        dataManager.saveUser(newUser);
-        goToDashboard();
+        generateUniqueId().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                String uniqueId = task.getResult(); // Get the generated ID
+                User newUser = new User(
+                    uniqueId,
+                    firebaseUser.getDisplayName(),
+                    firebaseUser.getEmail(),
+                    district,
+                    contact
+                );
+                dataManager.saveUser(newUser);
+                goToDashboard();
+            } else {
+                Log.e(TAG, "Failed to generate unique ID", task.getException());
+                Toast.makeText(this, "Failed to generate unique ID", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private Task<String> generateUniqueId() {
+        return firestore.collection("users").get().continueWith(task -> {
+            if (task.isSuccessful()) {
+                int count = (int) task.getResult().size() + 1; // Get the current count of users
+                return "m" + String.format("%02d", count); // Format as m01, m02, etc.
+            } else {
+                throw task.getException();
+            }
+        });
     }
 
     private void goToDashboard() {
@@ -162,17 +181,17 @@ public class LoginActivity2 extends AppCompatActivity {
         }
 
         mAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this, task -> {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    if (user != null) {
-                        goToDashboard();
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            goToDashboard();
+                        }
+                    } else {
+                        Toast.makeText(LoginActivity2.this,
+                                "Authentication failed: " + task.getException().getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(LoginActivity2.this, 
-                        "Authentication failed: " + task.getException().getMessage(),
-                        Toast.LENGTH_SHORT).show();
-                }
-            });
+                });
     }
 }

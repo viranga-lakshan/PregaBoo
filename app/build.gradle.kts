@@ -54,6 +54,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.android.gms:play-services-base:18.3.0")
     implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("com.google.android.gms:play-services-tasks:18.0.1")
 
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.12.0")
@@ -66,7 +67,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
 
     // RecyclerView dependency
-   implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 
     // Testing dependencies
     testImplementation(libs.junit)
