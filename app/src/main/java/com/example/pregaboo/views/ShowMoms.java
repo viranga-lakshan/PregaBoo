@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.adapters.MomAdapter;
 import com.example.pregaboo.models.Mom;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -27,7 +28,6 @@ public class ShowMoms extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView noMomsTextView;
 
-    // Declare Firestore instance
     private FirebaseFirestore db;
 
     @Override
@@ -35,53 +35,76 @@ public class ShowMoms extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_moms);
 
-        // Initialize Firestore instance
         db = FirebaseFirestore.getInstance();
 
         momRecyclerView = findViewById(R.id.momRecyclerView);
         progressBar = findViewById(R.id.progressBar);
         noMomsTextView = findViewById(R.id.noMomsTextView);
 
-        // Initialize the momList and momAdapter
         momList = new ArrayList<>();
         momAdapter = new MomAdapter(momList, this);
 
-        // Set up the RecyclerView
         momRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         momRecyclerView.setAdapter(momAdapter);
 
-        // Fetch moms data
-        fetchMoms("midwifeId"); // Replace with actual midwife ID
+        String midwifeId = getIntent().getStringExtra("MIDWIFE_ID");
+        if (midwifeId != null) {
+            fetchMidwifeLocation(midwifeId);
+        } else {
+            Toast.makeText(this, "Midwife ID not found", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void fetchMoms(String midwifeId) {
+    private void fetchMidwifeLocation(String midwifeId) {
         progressBar.setVisibility(View.VISIBLE);
         noMomsTextView.setVisibility(View.GONE);
 
-        String midwifeDistrict = "Kalutara"; // Replace with actual district fetching logic
-
-        // Use the Firestore instance to query the database
-        db.collection("users")
-            .whereEqualTo("location", midwifeDistrict)
-            .get()
-            .addOnCompleteListener(task -> {
-                progressBar.setVisibility(View.GONE);
-                if (task.isSuccessful()) {
-                    momList.clear();
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d("FirestoreData", document.getId() + " => " + document.getData());
-                        Mom mom = document.toObject(Mom.class);
-                        momList.add(mom);
-                    }
-                    momAdapter.notifyDataSetChanged(); // This should now work
-
-                    if (momList.isEmpty()) {
+        db.collection("midwives")
+                .document(midwifeId)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        DocumentSnapshot document = task.getResult();
+                        String midwifeDistrict = document.getString("location");
+                        if (midwifeDistrict != null) {
+                            fetchMoms(midwifeDistrict);
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            noMomsTextView.setVisibility(View.VISIBLE);
+                            Toast.makeText(ShowMoms.this, "Midwife district not found", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        progressBar.setVisibility(View.GONE);
                         noMomsTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(ShowMoms.this, "Error fetching midwife data: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Log.e("FirestoreError", "Error getting moms: ", task.getException());
-                    Toast.makeText(ShowMoms.this, "Error getting moms: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+                });
+    }
+
+    private void fetchMoms(String midwifeDistrict) {
+        progressBar.setVisibility(View.VISIBLE);
+        noMomsTextView.setVisibility(View.GONE);
+
+        db.collection("users")
+                .whereEqualTo("location", midwifeDistrict)
+                .get()
+                .addOnCompleteListener(task -> {
+                    progressBar.setVisibility(View.GONE);
+                    if (task.isSuccessful()) {
+                        momList.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Mom mom = document.toObject(Mom.class);
+                            mom.setMomId(document.getId());
+                            momList.add(mom);
+                        }
+                        momAdapter.notifyDataSetChanged();
+
+                        if (momList.isEmpty()) {
+                            noMomsTextView.setVisibility(View.VISIBLE);
+                        }
+                    } else {
+                        Toast.makeText(ShowMoms.this, "Error getting moms: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

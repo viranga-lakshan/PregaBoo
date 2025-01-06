@@ -2,8 +2,6 @@ package com.example.pregaboo.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +12,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class MidwifeLogin extends AppCompatActivity {
     private EditText emailInput;
     private EditText passwordInput;
-    private Button signBtn;
     private FirebaseFirestore db;
 
     @Override
@@ -24,15 +21,10 @@ public class MidwifeLogin extends AppCompatActivity {
 
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
-        signBtn = findViewById(R.id.sign_btn);
         db = FirebaseFirestore.getInstance();
 
-        signBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginMidwife();
-            }
-        });
+        // Assuming there's a button to trigger login
+        findViewById(R.id.loginButton).setOnClickListener(v -> loginMidwife());
     }
 
     private void loginMidwife() {
@@ -54,11 +46,11 @@ public class MidwifeLogin extends AppCompatActivity {
                     if (result != null && !result.isEmpty()) {
                         // Login successful
                         String midwifeId = result.getDocuments().get(0).getId();
-                        String district = result.getDocuments().get(0).getString("district");
-                        
+                        String location = result.getDocuments().get(0).getString("location");
+
                         Intent intent = new Intent(MidwifeLogin.this, ShowMoms.class);
                         intent.putExtra("MIDWIFE_ID", midwifeId);
-                        intent.putExtra("DISTRICT", district);
+                        intent.putExtra("Location", location);
                         startActivity(intent);
                         finish();
                     } else {
@@ -67,7 +59,7 @@ public class MidwifeLogin extends AppCompatActivity {
                     }
                 } else {
                     // Error occurred while querying Firestore
-                    Toast.makeText(MidwifeLogin.this, "Authentication failed: " + task.getException().getMessage(), 
+                    Toast.makeText(MidwifeLogin.this, "Authentication failed: " + task.getException().getMessage(),
                                  Toast.LENGTH_SHORT).show();
                 }
             });

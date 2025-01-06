@@ -1,7 +1,6 @@
-package com.example.pregaboo.adapters;
+ package com.example.pregaboo.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.models.Mom;
-import com.example.pregaboo.views.MomProfileActivity;
 
 import java.util.List;
 
@@ -33,17 +31,9 @@ public class MomAdapter extends RecyclerView.Adapter<MomAdapter.MomViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MomViewHolder holder, int position) {
         Mom mom = momList.get(position);
-        holder.momIdTextView.setText("Mom ID: " + mom.getMomId());
-        holder.nameTextView.setText("Name: " + mom.getName());
-        holder.pregnancyDateTextView.setText("Pregnancy Date: " + String.valueOf(mom.getPregnancyDate()));
-
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, MomProfileActivity.class);
-            intent.putExtra("MOM_ID", mom.getMomId());
-            intent.putExtra("MOM_NAME", mom.getName());
-            intent.putExtra("PREGNANCY_DATE", mom.getPregnancyDate());
-            context.startActivity(intent);
-        });
+        holder.nameTextView.setText(mom.getName());
+        holder.pregnancyDateTextView.setText(String.valueOf(mom.getPregnancyDate()));
+        holder.locationTextView.setText(mom.getLocation());
     }
 
     @Override
@@ -51,22 +41,16 @@ public class MomAdapter extends RecyclerView.Adapter<MomAdapter.MomViewHolder> {
         return momList.size();
     }
 
-    public void updateData(List<Mom> newMomList) {
-        momList.clear();
-        momList.addAll(newMomList);
-        notifyDataSetChanged();
-    }
-
     public static class MomViewHolder extends RecyclerView.ViewHolder {
-        TextView momIdTextView;
         TextView nameTextView;
         TextView pregnancyDateTextView;
+        TextView locationTextView;
 
         public MomViewHolder(@NonNull View itemView) {
             super(itemView);
-            momIdTextView = itemView.findViewById(R.id.momIdTextView);
-            nameTextView = itemView.findViewById(R.id.nameTextView);
-            pregnancyDateTextView = itemView.findViewById(R.id.pregnancyDateTextView);
+            nameTextView = itemView.findViewById(R.id.nameTextView); // Ensure this ID matches your layout
+            pregnancyDateTextView = itemView.findViewById(R.id.pregnancyDateTextView); // Ensure this ID matches your layout
+            locationTextView = itemView.findViewById(R.id.locationTextView); // Ensure this ID matches your layout
         }
     }
 }

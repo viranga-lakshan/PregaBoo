@@ -5,18 +5,18 @@ public class Midwife {
     private String email;
     private String phone;
     private String password;
-    private String district;
+    private String location;
 
     public Midwife() {
         // Default constructor required for calls to DataSnapshot.getValue(Midwife.class)
     }
 
-    public Midwife(String name, String email, String phone, String password, String district) {
+    public Midwife(String name, String email, String phone, String password, String location) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.district = district;
+        this.location = location;
     }
 
     public String getName() {
@@ -35,7 +35,7 @@ public class Midwife {
         return password;
     }
 
-    public String getDistrict() {
-        return district;
+    public String getlocation() {
+        return location;
     }
 }
