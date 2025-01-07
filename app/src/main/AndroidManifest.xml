@@ -47,7 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".views.UpdateMomDetailsActivity"
-            android:exported="false" /> <!-- Firebase services metadata -->
+            android:exported="false" />
         <meta-data
             android:name="com.google.firebase.analytics.APP_ID"
             android:value="@string/google_app_id" />

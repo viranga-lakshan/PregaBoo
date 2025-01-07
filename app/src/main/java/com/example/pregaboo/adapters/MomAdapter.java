@@ -40,7 +40,7 @@ public class MomAdapter extends RecyclerView.Adapter<MomAdapter.MomViewHolder> {
         holder.locationTextView.setText(mom.getLocation());
 
         holder.momDetailsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, UpdateMomDetails.class); // Updated to match the correct class
+            Intent intent = new Intent(context, UpdateMomDetails.class);
             intent.putExtra("MOM_ID", mom.getMomId());
             context.startActivity(intent);
         });
