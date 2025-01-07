@@ -1,6 +1,7 @@
 package com.example.pregaboo.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pregaboo.R;
@@ -8,6 +9,8 @@ import com.example.pregaboo.database.DataManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import android.widget.ImageButton;
+import android.util.Log;
+import android.widget.Toast;
 
 public class DashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -26,20 +29,30 @@ public class DashboardActivity extends AppCompatActivity {
         setupClickListeners();
 
         profileButton = findViewById(R.id.profileButton);
-        
+
         profileButton.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, MomProfileActivity.class);
-            startActivity(intent);
+            String momId = getCurrentMomId();
+            if (momId != null) {
+                intent.putExtra("MOM_ID", momId);
+                startActivity(intent);
+            } else {
+                Log.e("DashboardActivity", "MOM_ID is null. Cannot start MomProfileActivity.");
+                Toast.makeText(this, "Error: MOM_ID is missing.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
     private void checkUserAuthentication() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            // If not signed in, return to login screen
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
+        } else {
+            // Assuming you get the momId from the current user or another source
+            String momId = currentUser.getUid(); // Example: using Firebase UID as momId
+            saveMomId(momId);
         }
     }
 
@@ -53,20 +66,32 @@ public class DashboardActivity extends AppCompatActivity {
         ImageButton exerciseButton = findViewById(R.id.btn_exercises);
         ImageButton videoButton = findViewById(R.id.btn_video);
         ImageButton trackButton = findViewById(R.id.tarch_btn);
-        
+
         exerciseButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ExerciseActivity.class);
             startActivity(intent);
         });
-        
+
         videoButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ExerciseActivity.class);
             startActivity(intent);
         });
-        
+
         trackButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, TrackingToolsActivity.class);
             startActivity(intent);
         });
     }
-} 
+
+    private String getCurrentMomId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return sharedPreferences.getString("MOM_ID", null);
+    }
+
+    private void saveMomId(String momId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("MOM_ID", momId);
+        editor.apply();
+    }
+}

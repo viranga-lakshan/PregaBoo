@@ -1,15 +1,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="16dp"
     android:background="@android:color/white"
     android:layout_marginBottom="8dp">
+
+    <Button
+        android:id="@+id/babyButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circular_button_background"
+
+        android:contentDescription="Baby Button"
+        android:text="Baby"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/babyNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Baby Name"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp" />
 </LinearLayout>

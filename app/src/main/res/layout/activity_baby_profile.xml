@@ -84,13 +84,11 @@
 
         <!-- Second Vertical LinearLayout with 3 Buttons -->
         <LinearLayout
-            android:id="@id/secondLayout"
+            android:id="@+id/secondLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_x="0dp"
-            android:layout_y="0dp">
+            android:orientation="vertical">
 
             <Button
                 style="@style/CustomButtonStyle"
