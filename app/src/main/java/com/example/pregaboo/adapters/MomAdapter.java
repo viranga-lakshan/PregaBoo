@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.models.Mom;
-import com.example.pregaboo.views.UpdateMomDetails;
+import com.example.pregaboo.views.UpdateMomDetails; // Updated import
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class MomAdapter extends RecyclerView.Adapter<MomAdapter.MomViewHolder> {
         holder.locationTextView.setText(mom.getLocation());
 
         holder.momDetailsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, UpdateMomDetails.class);
+            Intent intent = new Intent(context, UpdateMomDetails.class); // Updated to match the correct class
             intent.putExtra("MOM_ID", mom.getMomId());
             context.startActivity(intent);
         });

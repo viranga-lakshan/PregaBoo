@@ -48,10 +48,9 @@ public class CreatBabyAccount extends AppCompatActivity {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Get the current user ID
         Baby baby = new Baby(null, name, gender, dob, deliveryMethod, userId);
 
-        // Save baby details in the user's sub-collection
         db.collection("users")
-            .document(userId) // Reference to the user document
-            .collection("babies") // Sub-collection for babies
+            .document(momId)
+            .collection("babies")
             .add(baby)
             .addOnSuccessListener(documentReference -> {
                 Toast.makeText(CreatBabyAccount.this, "Baby details saved successfully", Toast.LENGTH_SHORT).show();
