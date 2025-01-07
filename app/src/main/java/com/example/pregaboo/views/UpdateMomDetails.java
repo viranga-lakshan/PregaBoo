@@ -10,10 +10,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
+import com.example.pregaboo.adapters.BabyAdapter;
+import com.example.pregaboo.models.Baby;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UpdateMomDetails extends AppCompatActivity {
     private String momId;
+    private RecyclerView babyRecyclerView;
+    private BabyAdapter babyAdapter;
+    private List<Baby> babyList;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +44,17 @@ public class UpdateMomDetails extends AppCompatActivity {
             Log.e("UpdateMomDetails", "View with ID 'main' not found.");
         }
 
+        db = FirebaseFirestore.getInstance();
         momId = getIntent().getStringExtra("MOM_ID");
-        if (momId != null) {
-            Log.d("UpdateMomDetails", "Received MOM_ID: " + momId);
-        } else {
-            Log.e("UpdateMomDetails", "MOM_ID not found in intent.");
-        }
 
+        babyRecyclerView = findViewById(R.id.babyRecyclerView);
+        babyList = new ArrayList<>();
+        babyAdapter = new BabyAdapter(babyList, this);
+        babyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        babyRecyclerView.setAdapter(babyAdapter);
+
+        fetchBabies();
+        
         Button addChildButton = findViewById(R.id.addChildButton);
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,5 +64,25 @@ public class UpdateMomDetails extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void fetchBabies() {
+        db.collection("users")
+            .document(momId)
+            .collection("babies")
+            .get()
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    babyList.clear();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Baby baby = document.toObject(Baby.class);
+                        baby.setBabyId(document.getId());
+                        babyList.add(baby);
+                    }
+                    babyAdapter.notifyDataSetChanged();
+                } else {
+                    Log.e("UpdateMomDetails", "Error fetching babies: " + task.getException().getMessage());
+                }
+            });
     }
 }
