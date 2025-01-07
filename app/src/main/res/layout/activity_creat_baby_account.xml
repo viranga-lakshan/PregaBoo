@@ -30,18 +30,6 @@
         android:layout_height="wrap_content"
         android:hint="Delivery Method" />
 
-    <EditText
-        android:id="@+id/editTextBirthWeight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Birth Weight (kg)" />
-
-    <EditText
-        android:id="@+id/editTextBirthHeight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Birth Height (cm)" />
-
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"

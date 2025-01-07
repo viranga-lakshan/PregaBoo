@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.models.Mom;
-import com.example.pregaboo.views.UpdateMomDetails; // Updated import
+import com.example.pregaboo.views.UpdateMomDetails;
 
 import java.util.List;
 
