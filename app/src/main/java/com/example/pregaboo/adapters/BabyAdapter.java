@@ -1,14 +1,17 @@
 package com.example.pregaboo.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.models.Baby;
+import com.example.pregaboo.views.UpdateBabyDetails;
 import java.util.List;
 
 public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.BabyViewHolder> {
@@ -31,6 +34,12 @@ public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.BabyViewHolder
     public void onBindViewHolder(@NonNull BabyViewHolder holder, int position) {
         Baby baby = babyList.get(position);
         holder.babyNameTextView.setText(baby.getName());
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, UpdateBabyDetails.class);
+            intent.putExtra("BABY_ID", baby.getBabyId());
+            intent.putExtra("BABY_NAME", baby.getName());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -40,10 +49,12 @@ public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.BabyViewHolder
 
     public static class BabyViewHolder extends RecyclerView.ViewHolder {
         TextView babyNameTextView;
+        Button babyButton;
 
         public BabyViewHolder(@NonNull View itemView) {
             super(itemView);
             babyNameTextView = itemView.findViewById(R.id.babyNameTextView);
+            babyButton = itemView.findViewById(R.id.babyButton);
         }
     }
 }
