@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFE3E5">
+
+    <!-- Top Section with Background -->
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="272dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Background Image -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="265dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_41" />
+
+        <!-- Profile Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="88dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_background"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_41" />
+
+            <TextView
+                android:id="@+id/txt_bay_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Chuti Manike"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="India • English"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/editProfileButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#FFFFFF"
+                android:drawablePadding="8dp"
+                android:elevation="4dp"
+                android:paddingHorizontal="16dp"
+                android:text="EDIT PROFILE"
+                android:textColor="#3F51B5" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Buttons Section -->
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:columnCount="2"
+        android:padding="8dp"
+
+        android:rowCount="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/vaccineButton"
+        android:layout_width="177dp"
+        android:layout_height="96dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="175dp"
+        android:backgroundTint="#D9D2E9"
+        android:text="Vaccine"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scheduleButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/notesButton"
+        android:layout_width="176dp"
+        android:layout_height="97dp"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="181dp"
+        android:backgroundTint="#FDDDC1"
+        android:text="Notes"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/growthButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/vaccineButton"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/scheduleButton"
+        android:layout_width="171dp"
+        android:layout_height="85dp"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="242dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="169dp"
+        android:backgroundTint="#CDEAFD"
+        android:text="Schedule"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/growthButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vaccineButton" />
+
+    <Button
+        android:id="@+id/growthButton"
+        android:layout_width="168dp"
+        android:layout_height="87dp"
+        android:layout_margin="8dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="241dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="169dp"
+        android:backgroundTint="#DFF0C6"
+        android:text="Growth"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scheduleButton"
+        app:layout_constraintTop_toBottomOf="@+id/notesButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

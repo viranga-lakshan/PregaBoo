@@ -32,7 +32,7 @@ public class UpdateMomDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_update_mom_details);
-        
+
         View mainView = findViewById(R.id.main);
         if (mainView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
@@ -54,7 +54,7 @@ public class UpdateMomDetails extends AppCompatActivity {
         babyRecyclerView.setAdapter(babyAdapter);
 
         fetchBabies();
-        
+
         Button addChildButton = findViewById(R.id.addChildButton);
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,21 +68,21 @@ public class UpdateMomDetails extends AppCompatActivity {
 
     private void fetchBabies() {
         db.collection("users")
-            .document(momId)
-            .collection("babies")
-            .get()
-            .addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    babyList.clear();
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Baby baby = document.toObject(Baby.class);
-                        baby.setBabyId(document.getId());
-                        babyList.add(baby);
+                .document(momId)
+                .collection("babies")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        babyList.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Baby baby = document.toObject(Baby.class);
+                            baby.setBabyId(document.getId());
+                            babyList.add(baby);
+                        }
+                        babyAdapter.notifyDataSetChanged();
+                    } else {
+                        Log.e("UpdateMomDetails", "Error fetching babies: " + task.getException().getMessage());
                     }
-                    babyAdapter.notifyDataSetChanged();
-                } else {
-                    Log.e("UpdateMomDetails", "Error fetching babies: " + task.getException().getMessage());
-                }
-            });
+                });
     }
 }

@@ -143,7 +143,7 @@
 
     <!-- Fixed Navbar -->
     <include
-        android:id="@id/navbar"
+        android:id="@+id/navbar"
         layout="@layout/activity_navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
