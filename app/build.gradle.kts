@@ -65,6 +65,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+    implementation ("com.google.firebase:firebase-storage:20.0.0")
+
 
     // RecyclerView dependency
     implementation("androidx.recyclerview:recyclerview:1.3.2")

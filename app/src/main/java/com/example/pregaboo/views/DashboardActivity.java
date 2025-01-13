@@ -41,6 +41,12 @@ public class DashboardActivity extends AppCompatActivity {
                 Toast.makeText(this, "Error: MOM_ID is missing.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        ImageButton socialButton = findViewById(R.id.socialButton);
+        socialButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, SocialActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void checkUserAuthentication() {

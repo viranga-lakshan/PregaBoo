@@ -1,7 +1,9 @@
 package com.example.pregaboo.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.pregaboo.views.CreatePostActivity;
 
 public class MomProfileActivity extends AppCompatActivity {
     private RecyclerView babyRecyclerView;
@@ -43,25 +46,31 @@ public class MomProfileActivity extends AppCompatActivity {
         babyRecyclerView.setAdapter(babyAdapter);
 
         fetchBabies();
+
+        Button addPostButton = findViewById(R.id.btn_addpost);
+        addPostButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MomProfileActivity.this, CreatePostActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void fetchBabies() {
         db.collection("users")
-            .document(momId)
-            .collection("babies")
-            .get()
-            .addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    babyList.clear();
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Baby baby = document.toObject(Baby.class);
-                        baby.setBabyId(document.getId());
-                        babyList.add(baby);
+                .document(momId)
+                .collection("babies")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        babyList.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Baby baby = document.toObject(Baby.class);
+                            baby.setBabyId(document.getId());
+                            babyList.add(baby);
+                        }
+                        babyAdapter.notifyDataSetChanged();
+                    } else {
+                        Log.e("MomProfileActivity", "Error fetching babies: " + task.getException().getMessage());
                     }
-                    babyAdapter.notifyDataSetChanged();
-                } else {
-                    Log.e("MomProfileActivity", "Error fetching babies: " + task.getException().getMessage());
-                }
-            });
+                });
     }
-} 
+}
