@@ -35,7 +35,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
         Post post = posts.get(position);
 
-        // Set post text
+
         if (post.getText() != null && !post.getText().isEmpty()) {
             holder.postText.setVisibility(View.VISIBLE);
             holder.postText.setText(post.getText());
