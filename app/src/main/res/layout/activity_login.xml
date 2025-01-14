@@ -19,14 +19,14 @@
         app:layout_constraintVertical_bias="0.167" />
 
     <LinearLayout
-        android:layout_width="369dp"
-        android:layout_height="248dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="402dp"
+        android:layout_height="354dp"
+        android:layout_marginBottom="68dp"
         android:background="@drawable/rounded_corner_background"
         android:orientation="vertical"
         android:padding="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp">
+        tools:layout_editor_absoluteX="5dp">
 
         <Button
             android:id="@+id/buttonExpecting"
@@ -54,6 +54,15 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/rounded_button_white"
             android:text="I AM ADMIN"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/buttonaSeller"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_button_white"
+            android:text="I AM SELLER"
             android:textColor="@color/white" />
 
         <LinearLayout

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Product Name -->
+    <TextView
+        android:id="@+id/textProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Name:"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Product Name"
+        android:inputType="text"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Product Description -->
+    <TextView
+        android:id="@+id/textProductDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Description:"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editProductDescription"
+        android:layout_width="373dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Enter Product Description"
+        android:inputType="text"
+        android:minHeight="150dp" />
+
+    <!-- Product Price -->
+    <TextView
+        android:id="@+id/textProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Price ($):"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editProductPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Price"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Warranty Period -->
+    <TextView
+        android:id="@+id/textWarrantyPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Warranty Period (months):"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editWarrantyPeriod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Warranty Period"
+        android:inputType="number"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Product Image -->
+    <TextView
+        android:id="@+id/textProductImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Image:"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
+
+    <ImageView
+        android:id="@+id/productImageView"
+        android:layout_width="377dp"
+        android:layout_height="147dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop" />
+
+    <!-- Select Image Button -->
+    <Button
+        android:id="@+id/buttonSelectImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Image"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Add Product Button -->
+    <Button
+        android:id="@+id/buttonAddProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Product"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

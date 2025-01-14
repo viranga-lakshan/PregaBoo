@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/gradient_background">
+
+    <TextView
+        android:id="@+id/product_info_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Information"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:id="@+id/company_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company Name"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/company_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your company name"
+        android:inputType="text"
+        android:padding="12dp"
+        android:background="@android:color/white"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/contact_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Number"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/contact_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your contact number"
+        android:inputType="phone"
+        android:padding="12dp"
+        android:background="@android:color/white"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/email_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Address"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your email address"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:background="@android:color/white"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/message_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message to Admin"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your message"
+        android:inputType="textMultiLine"
+        android:padding="12dp"
+        android:background="@android:color/white"
+        android:layout_marginBottom="24dp"
+        android:minHeight="100dp"/>
+
+    <TextView
+        android:id="@+id/additional_info_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Additional Information"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/additional_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter any additional information"
+        android:inputType="textMultiLine"
+        android:padding="12dp"
+        android:background="@android:color/white"
+        android:layout_marginBottom="24dp"
+        android:minHeight="100dp"/>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Request"
+        android:backgroundTint="#E75480"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
+
+</LinearLayout>

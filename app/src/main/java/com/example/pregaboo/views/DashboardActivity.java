@@ -16,6 +16,7 @@ public class DashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DataManager dataManager;
     private ImageButton profileButton;
+    private ImageButton socialButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class DashboardActivity extends AppCompatActivity {
         setupClickListeners();
 
         profileButton = findViewById(R.id.profileButton);
+        socialButton = findViewById(R.id.socialButton);
 
         profileButton.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, MomProfileActivity.class);
@@ -42,9 +44,8 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton socialButton = findViewById(R.id.socialButton);
         socialButton.setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, SocialActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, ShowProducteUsers.class);
             startActivity(intent);
         });
     }
