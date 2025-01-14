@@ -39,7 +39,7 @@ public class SellerAddProducte extends AppCompatActivity {
         editProductDescription = findViewById(R.id.editProductDescription);
         editProductPrice = findViewById(R.id.editProductPrice);
         editWarrantyPeriod = findViewById(R.id.editWarrantyPeriod);
-        productImageView = findViewById(R.id.productImageView); // Ensure this line is present
+        productImageView = findViewById(R.id.productImageView);
 
         buttonSelectImage = findViewById(R.id.buttonSelectImage);
         buttonAddProduct = findViewById(R.id.buttonAddProduct);
