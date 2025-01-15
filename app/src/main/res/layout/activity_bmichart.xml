@@ -11,98 +11,124 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/img_38"
+        android:alpha="0.2"
         android:scaleType="centerCrop"
-        android:alpha="0.2" /> <!-- Adjust alpha for opacity -->
+        android:src="@drawable/img_38"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /> <!-- Adjust alpha for opacity -->
 
     <!-- Title -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="683dp"
         android:text="Weight and Height Tracker"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Weight Input -->
+
+    <!-- Height Input -->
+
+    <!-- Milestones Input -->
+
     <EditText
         android:id="@+id/weightInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="582dp"
         android:hint="Enter weight (kg)"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <!-- Height Input -->
+    <!-- Add Data Button -->
+
+    <!-- Journal Title -->
+
+    <!-- Journal RecyclerView -->
+
     <EditText
         android:id="@+id/heightInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="524dp"
         android:hint="Enter height (cm)"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weightInput" />
 
-    <!-- Milestones Input -->
     <EditText
         android:id="@+id/milestonesInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter milestones" />
-
-    <!-- Add Data Button -->
-    <Button
-        android:id="@+id/addDataButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Add Data"
-        app:layout_constraintTop_toBottomOf="@id/heightInput"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="614dp"
+        android:hint="Enter milestones"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/backgroundImage" />
 
-    <!-- Journal Title -->
     <TextView
         android:id="@+id/journalTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="223dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="481dp"
         android:text="Journal"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
+        app:layout_constraintEnd_toStartOf="@+id/saveButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addDataButton" />
+        app:layout_constraintTop_toTopOf="@+id/backgroundImage" />
 
-    <!-- Journal RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/journalRecyclerView"
+        android:id="@+id/growthRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/journalTitle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/journalTitle" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Save Button -->
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="20dp"
         android:text="Save Growth Data"
-        app:layout_constraintTop_toBottomOf="@id/heightInput"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/growthRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/journalTitle"
+        app:layout_constraintTop_toBottomOf="@id/heightInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

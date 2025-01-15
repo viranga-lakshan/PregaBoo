@@ -3,6 +3,7 @@ package com.example.pregaboo.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ public class UpdateBabyDetails extends AppCompatActivity {
     private FirebaseFirestore db;
     private TextView babyNameTextView;
     private Button growthButton;
+    private Button vaccineButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class UpdateBabyDetails extends AppCompatActivity {
 
         babyNameTextView = findViewById(R.id.txt_bay_name);
         growthButton = findViewById(R.id.growthButton);
+        vaccineButton = findViewById(R.id.vaccineButton);
         db = FirebaseFirestore.getInstance();
         babyId = getIntent().getStringExtra("BABY_ID");
         userId = getIntent().getStringExtra("USER_ID");
@@ -47,6 +50,13 @@ public class UpdateBabyDetails extends AppCompatActivity {
             intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
+
+        vaccineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToAddVaccine();
+            }
+        });
     }
 
     private void fetchBabyDetails() {
@@ -65,5 +75,10 @@ public class UpdateBabyDetails extends AppCompatActivity {
                         Log.e("UpdateBabyDetails", "Error fetching baby details: " + task.getException().getMessage());
                     }
                 });
+    }
+
+    private void navigateToAddVaccine() {
+        Intent intent = new Intent(UpdateBabyDetails.this, AddVaccineBaby.class);
+        startActivity(intent);
     }
 }
