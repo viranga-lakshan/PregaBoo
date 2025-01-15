@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pregaboo.R;
 import com.example.pregaboo.models.Baby;
@@ -13,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class UpdateBabyDetails extends AppCompatActivity {
     private String babyId;
     private String babyName;
+    private String userId;
     private FirebaseFirestore db;
     private TextView babyNameTextView;
     private Button growthButton;
@@ -26,6 +28,7 @@ public class UpdateBabyDetails extends AppCompatActivity {
         growthButton = findViewById(R.id.growthButton);
         db = FirebaseFirestore.getInstance();
         babyId = getIntent().getStringExtra("BABY_ID");
+        userId = getIntent().getStringExtra("USER_ID");
         babyName = getIntent().getStringExtra("BABY_NAME");
 
         if (babyName != null) {
@@ -35,7 +38,13 @@ public class UpdateBabyDetails extends AppCompatActivity {
         }
 
         growthButton.setOnClickListener(v -> {
+            if (babyId == null || userId == null) {
+                Toast.makeText(UpdateBabyDetails.this, "Error: Baby ID or User ID is missing.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intent = new Intent(UpdateBabyDetails.this, Bmichart.class);
+            intent.putExtra("BABY_ID", babyId);
+            intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
     }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.adapters.BabyAdapter;
 import com.example.pregaboo.models.Baby;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
@@ -49,20 +50,20 @@ public class UpdateMomDetails extends AppCompatActivity {
 
         babyRecyclerView = findViewById(R.id.babyRecyclerView);
         babyList = new ArrayList<>();
-        babyAdapter = new BabyAdapter(babyList, this);
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        babyAdapter = new BabyAdapter(babyList, this, userId);
         babyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         babyRecyclerView.setAdapter(babyAdapter);
 
         fetchBabies();
 
         Button addChildButton = findViewById(R.id.addChildButton);
-        addChildButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UpdateMomDetails.this, CreatBabyAccount.class);
-                intent.putExtra("MOM_ID", momId);
-                startActivity(intent);
-            }
+        addChildButton.setOnClickListener(v -> {
+            Intent intent = new Intent(UpdateMomDetails.this, CreatBabyAccount.class);
+            intent.putExtra("MOM_ID", momId);
+            startActivity(intent);
         });
     }
 

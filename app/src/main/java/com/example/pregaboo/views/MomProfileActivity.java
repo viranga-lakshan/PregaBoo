@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.adapters.BabyAdapter;
 import com.example.pregaboo.models.Baby;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
@@ -39,9 +40,11 @@ public class MomProfileActivity extends AppCompatActivity {
             return;
         }
 
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         babyRecyclerView = findViewById(R.id.babyRecyclerView);
         babyList = new ArrayList<>();
-        babyAdapter = new BabyAdapter(babyList, this);
+        babyAdapter = new BabyAdapter(babyList, this, userId);
         babyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         babyRecyclerView.setAdapter(babyAdapter);
 

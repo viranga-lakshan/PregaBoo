@@ -53,8 +53,20 @@ public class CreatBabyAccount extends AppCompatActivity {
             .collection("babies")
             .add(baby)
             .addOnSuccessListener(documentReference -> {
-                Toast.makeText(CreatBabyAccount.this, "Baby details saved successfully", Toast.LENGTH_SHORT).show();
-                finish(); // Close the activity
+                // Update the baby ID in Firestore
+                String babyId = documentReference.getId();
+                db.collection("users")
+                    .document(momId)
+                    .collection("babies")
+                    .document(babyId)
+                    .update("id", babyId)
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(CreatBabyAccount.this, "Baby details saved successfully", Toast.LENGTH_SHORT).show();
+                        finish(); // Close the activity
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(CreatBabyAccount.this, "Error updating baby ID: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
             })
             .addOnFailureListener(e -> {
                 Toast.makeText(CreatBabyAccount.this, "Error saving baby details: " + e.getMessage(), Toast.LENGTH_SHORT).show();

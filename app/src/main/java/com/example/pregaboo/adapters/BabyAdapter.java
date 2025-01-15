@@ -17,10 +17,12 @@ import java.util.List;
 public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.BabyViewHolder> {
     private List<Baby> babyList;
     private Context context;
+    private String userId;
 
-    public BabyAdapter(List<Baby> babyList, Context context) {
+    public BabyAdapter(List<Baby> babyList, Context context, String userId) {
         this.babyList = babyList;
         this.context = context;
+        this.userId = userId;
     }
 
     @NonNull
@@ -37,6 +39,7 @@ public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.BabyViewHolder
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, UpdateBabyDetails.class);
             intent.putExtra("BABY_ID", baby.getBabyId());
+            intent.putExtra("USER_ID", userId);
             intent.putExtra("BABY_NAME", baby.getName());
             context.startActivity(intent);
         });
