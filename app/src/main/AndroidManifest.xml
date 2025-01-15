@@ -39,7 +39,9 @@
         <activity
             android:name=".views.SocialActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".views.Social"
+            android:exported="false" />
         <activity
             android:name=".views.UpdateBabyDetails"
             android:exported="false" />

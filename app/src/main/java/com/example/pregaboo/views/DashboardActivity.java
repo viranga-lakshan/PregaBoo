@@ -17,6 +17,7 @@ public class DashboardActivity extends AppCompatActivity {
     private DataManager dataManager;
     private ImageButton profileButton;
     private ImageButton socialButton;
+    private ImageButton shopButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         profileButton = findViewById(R.id.profileButton);
         socialButton = findViewById(R.id.socialButton);
+        shopButton = findViewById(R.id.shopButton);
 
         profileButton.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, MomProfileActivity.class);
@@ -45,6 +47,11 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         socialButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, SocialActivity.class);
+            startActivity(intent);
+        });
+
+        shopButton.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, ShowProducteUsers.class);
             startActivity(intent);
         });
@@ -57,8 +64,7 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            // Assuming you get the momId from the current user or another source
-            String momId = currentUser.getUid(); // Example: using Firebase UID as momId
+            String momId = currentUser.getUid();
             saveMomId(momId);
         }
     }
