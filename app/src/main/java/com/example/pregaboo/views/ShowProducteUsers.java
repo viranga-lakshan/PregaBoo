@@ -55,9 +55,9 @@ public class ShowProducteUsers extends AppCompatActivity {
                                                     for (DocumentSnapshot productDoc : productQuerySnapshot.getDocuments()) {
                                                         String name = productDoc.getString("name");
                                                         double price = productDoc.getDouble("price");
-                                                        String description = ""; // Default value
-                                                        String imageBase64 = ""; // Default value
-                                                        int warrantyPeriod = 0; // Default value
+                                                        String description = productDoc.getString("description");
+                                                        String imageBase64 = productDoc.getString("imageBase64");
+                                                        int warrantyPeriod = productDoc.getLong("warrantyPeriod").intValue();
 
                                                         Product product = new Product(name, description, imageBase64, price, warrantyPeriod);
                                                         productList.add(product);

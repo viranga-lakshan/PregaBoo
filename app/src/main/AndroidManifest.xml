@@ -39,9 +39,7 @@
         <activity
             android:name=".views.SocialActivity"
             android:exported="false" />
-        <activity
-            android:name=".views.Social"
-            android:exported="false" />
+
         <activity
             android:name=".views.UpdateBabyDetails"
             android:exported="false" />
@@ -72,12 +70,7 @@
         <activity
             android:name=".views.GoogleSigningLocation"
             android:exported="false" />
-        <activity
-            android:name=".views.UpdateMomDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".views.BMICartActivity"
-            android:exported="false" />
+
         <activity
             android:name=".views.Bmichart"
             android:exported="false" />
