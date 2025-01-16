@@ -71,6 +71,9 @@ dependencies {
     // RecyclerView dependency
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
+    //bmichart
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
     // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

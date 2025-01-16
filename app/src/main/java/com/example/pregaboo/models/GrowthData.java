@@ -4,15 +4,17 @@ public class GrowthData {
     private String date;
     private double height;
     private double weight;
+    private double bmi;
 
     public GrowthData() {
         // Default constructor required for calls to DataSnapshot.getValue(GrowthData.class)
     }
 
-    public GrowthData(String date, double height, double weight) {
+    public GrowthData(String date, double height, double weight, double bmi) {
         this.date = date;
         this.height = height;
         this.weight = weight;
+        this.bmi = bmi;
     }
 
     public String getDate() {
@@ -25,5 +27,9 @@ public class GrowthData {
 
     public double getWeight() {
         return weight;
+    }
+
+    public double getBmi() {
+        return bmi;
     }
 }

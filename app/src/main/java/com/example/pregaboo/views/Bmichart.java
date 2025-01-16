@@ -19,6 +19,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.text.SimpleDateFormat;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
 public class Bmichart extends AppCompatActivity {
     private EditText heightInput, weightInput, milestonesInput;
@@ -29,6 +33,7 @@ public class Bmichart extends AppCompatActivity {
     private FirebaseFirestore db;
     private String userId;
     private String babyId;
+    private LineChart bmiChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class Bmichart extends AppCompatActivity {
         milestonesInput = findViewById(R.id.milestonesInput);
         saveButton = findViewById(R.id.saveButton);
         growthRecyclerView = findViewById(R.id.growthRecyclerView);
+        bmiChart = findViewById(R.id.bmiChart);
 
         growthDataList = new ArrayList<>();
         adapter = new GrowthDataAdapter(growthDataList);
@@ -112,11 +118,23 @@ public class Bmichart extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         growthDataList.clear();
+                        List<Entry> bmiEntries = new ArrayList<>();
+                        int index = 0; // For x-axis
+
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             GrowthData growthData = document.toObject(GrowthData.class);
                             growthDataList.add(growthData);
+
+                            // Assuming growthData has a method getBmi() to get the BMI value
+                            double bmi = growthData.getBmi();
+                            bmiEntries.add(new Entry(index++, (float) bmi)); // Add entry for chart
                         }
-                        adapter.notifyDataSetChanged();
+
+                        // Set up the chart
+                        LineDataSet lineDataSet = new LineDataSet(bmiEntries, "BMI Over Time");
+                        LineData lineData = new LineData(lineDataSet);
+                        bmiChart.setData(lineData);
+                        bmiChart.invalidate(); // Refresh the chart
                     } else {
                         Toast.makeText(Bmichart.this, "Error loading growth data.", Toast.LENGTH_SHORT).show();
                     }
