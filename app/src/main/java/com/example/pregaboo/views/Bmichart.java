@@ -70,18 +70,19 @@ public class Bmichart extends AppCompatActivity {
             return;
         }
 
-        double height = Double.parseDouble(heightStr);
+        double height = Double.parseDouble(heightStr) / 100; // Convert cm to meters
         double weight = Double.parseDouble(weightStr);
 
-        // Get the current date and format it
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        String formattedDate = dateFormat.format(new Date());
+        // Calculate BMI
+        double bmi = weight / (height * height);
 
+        // Create a map to store growth data
         Map<String, Object> growthData = new HashMap<>();
-        growthData.put("date", formattedDate); // Store the formatted date
+        growthData.put("date", new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date())); // Store the formatted date
         growthData.put("height", height);
         growthData.put("weight", weight);
         growthData.put("milestones", milestones);
+        growthData.put("bmi", bmi); // Store the calculated BMI
 
         db.collection("users")
                 .document(userId)

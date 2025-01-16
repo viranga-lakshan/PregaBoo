@@ -10,10 +10,14 @@ import com.example.pregaboo.R;
 import com.example.pregaboo.models.Baby;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import android.widget.DatePicker;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CreatBabyAccount extends AppCompatActivity {
-    private EditText editTextName, editTextGender, editTextDOB, editTextDeliveryMethod;
+    private EditText editTextName, editTextGender, editTextDeliveryMethod;
     private Button buttonSave;
+    private DatePicker datePicker;
     private FirebaseFirestore db;
     private String momId;
 
@@ -24,7 +28,7 @@ public class CreatBabyAccount extends AppCompatActivity {
 
         editTextName = findViewById(R.id.editTextName);
         editTextGender = findViewById(R.id.editTextGender);
-        editTextDOB = findViewById(R.id.editTextDOB);
+        datePicker = findViewById(R.id.datePicker);
         editTextDeliveryMethod = findViewById(R.id.editTextDeliveryMethod);
         buttonSave = findViewById(R.id.buttonSave);
         db = FirebaseFirestore.getInstance();
@@ -37,8 +41,13 @@ public class CreatBabyAccount extends AppCompatActivity {
     private void saveBabyDetails() {
         String name = editTextName.getText().toString();
         String gender = editTextGender.getText().toString();
-        String dob = editTextDOB.getText().toString();
         String deliveryMethod = editTextDeliveryMethod.getText().toString();
+
+        // Get the selected date from DatePicker
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dob = dateFormat.format(calendar.getTime());
 
         if (name.isEmpty() || gender.isEmpty() || dob.isEmpty() || deliveryMethod.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
