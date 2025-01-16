@@ -51,11 +51,12 @@ public class UpdateBabyDetails extends AppCompatActivity {
             startActivity(intent);
         });
 
-        vaccineButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToAddVaccine();
+        vaccineButton.setOnClickListener(v -> {
+            if (babyId == null || userId == null) {
+                Toast.makeText(UpdateBabyDetails.this, "Error: Baby ID or User ID is missing.", Toast.LENGTH_SHORT).show();
+                return;
             }
+            navigateToAddVaccine();
         });
     }
 
@@ -79,6 +80,8 @@ public class UpdateBabyDetails extends AppCompatActivity {
 
     private void navigateToAddVaccine() {
         Intent intent = new Intent(UpdateBabyDetails.this, AddVaccineBaby.class);
+        intent.putExtra("BABY_ID", babyId);
+        intent.putExtra("USER_ID", userId);
         startActivity(intent);
     }
 }
