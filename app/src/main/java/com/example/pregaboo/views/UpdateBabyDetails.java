@@ -20,6 +20,7 @@ public class UpdateBabyDetails extends AppCompatActivity {
     private TextView babyNameTextView;
     private Button growthButton;
     private Button vaccineButton;
+    private Button scheduleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class UpdateBabyDetails extends AppCompatActivity {
         babyNameTextView = findViewById(R.id.txt_bay_name);
         growthButton = findViewById(R.id.growthButton);
         vaccineButton = findViewById(R.id.vaccineButton);
+        scheduleButton = findViewById(R.id.scheduleButton);
         db = FirebaseFirestore.getInstance();
         babyId = getIntent().getStringExtra("BABY_ID");
         userId = getIntent().getStringExtra("USER_ID");
@@ -58,6 +60,14 @@ public class UpdateBabyDetails extends AppCompatActivity {
             }
             navigateToAddVaccine();
         });
+
+        scheduleButton.setOnClickListener(v -> {
+            if (babyId == null || userId == null) {
+                Toast.makeText(UpdateBabyDetails.this, "Error: Baby ID or User ID is missing.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            navigateToAddBabyClinicDateSchedule();
+        });
     }
 
     private void fetchBabyDetails() {
@@ -82,6 +92,13 @@ public class UpdateBabyDetails extends AppCompatActivity {
         Intent intent = new Intent(UpdateBabyDetails.this, AddVaccineBaby.class);
         intent.putExtra("BABY_ID", babyId);
         intent.putExtra("USER_ID", userId);
+        startActivity(intent);
+    }
+
+    private void navigateToAddBabyClinicDateSchedule() {
+        Intent intent = new Intent(UpdateBabyDetails.this, AddBabyClinicDateShedule.class);
+        intent.putExtra("USER_ID", userId);
+        intent.putExtra("BABY_ID", babyId);
         startActivity(intent);
     }
 }

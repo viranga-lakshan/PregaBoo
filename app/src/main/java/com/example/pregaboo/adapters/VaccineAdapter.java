@@ -30,9 +30,9 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineV
     @Override
     public void onBindViewHolder(@NonNull VaccineViewHolder holder, int position) {
         Vaccine vaccine = vaccineList.get(position);
+        holder.dateTextView.setText(vaccine.getDate());
         holder.vaccineNameTextView.setText(vaccine.getVaccineName());
         holder.dosageTextView.setText(vaccine.getDosage());
-        holder.dateTextView.setText(vaccine.getDate());
     }
 
     @Override
