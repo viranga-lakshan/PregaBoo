@@ -58,8 +58,9 @@ public class ShowProducteUsers extends AppCompatActivity {
                                                         String description = productDoc.getString("description");
                                                         String imageBase64 = productDoc.getString("imageBase64");
                                                         int warrantyPeriod = productDoc.getLong("warrantyPeriod").intValue();
+                                                        String category = productDoc.getString("category");
 
-                                                        Product product = new Product(name, description, imageBase64, price, warrantyPeriod);
+                                                        Product product = new Product(name, description, imageBase64, price, warrantyPeriod,category);
                                                         productList.add(product);
                                                     }
                                                     productAdapter.notifyDataSetChanged();

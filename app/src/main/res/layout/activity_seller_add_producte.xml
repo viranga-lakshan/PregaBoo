@@ -73,6 +73,12 @@
         android:hint="Enter Warranty Period"
         android:inputType="number"
         android:layout_marginBottom="16dp" />
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp" />
 
     <!-- Product Image -->
     <TextView
@@ -105,5 +111,7 @@
         android:layout_height="wrap_content"
         android:text="Add Product"
         android:layout_marginTop="16dp" />
+
+
 
 </LinearLayout>
