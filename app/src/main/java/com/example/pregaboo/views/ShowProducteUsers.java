@@ -1,6 +1,9 @@
 package com.example.pregaboo.views;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,11 +33,25 @@ public class ShowProducteUsers extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewProducts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         productList = new ArrayList<>();
-        productAdapter = new ProductAdapter(productList);
+        productAdapter = new ProductAdapter(this, productList);
         recyclerView.setAdapter(productAdapter);
 
         db = FirebaseFirestore.getInstance();
         fetchProducts();
+
+        EditText searchBar = findViewById(R.id.searchBar);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
     }
 
     private void fetchProducts() {
@@ -58,8 +75,9 @@ public class ShowProducteUsers extends AppCompatActivity {
                                                         String description = productDoc.getString("description");
                                                         String imageBase64 = productDoc.getString("imageBase64");
                                                         int warrantyPeriod = productDoc.getLong("warrantyPeriod").intValue();
+                                                        String category = productDoc.getString("category");
 
-                                                        Product product = new Product(name, description, imageBase64, price, warrantyPeriod);
+                                                        Product product = new Product(name, description, imageBase64, null, price, warrantyPeriod, category);
                                                         productList.add(product);
                                                     }
                                                     productAdapter.notifyDataSetChanged();
@@ -72,5 +90,15 @@ public class ShowProducteUsers extends AppCompatActivity {
                         Toast.makeText(this, "Error fetching sellers: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void filter(String text) {
+        List<Product> filteredList = new ArrayList<>();
+        for (Product product : productList) {
+            if (product.getName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(product);
+            }
+        }
+        productAdapter.filterList(filteredList);
     }
 }

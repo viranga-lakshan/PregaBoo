@@ -7,9 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,7 @@ public class SellerAddProducte extends AppCompatActivity {
     private Button buttonSelectImage, buttonAddProduct;
     private Uri imageUri;
     private FirebaseFirestore db;
+    private Spinner spinnerCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,13 @@ public class SellerAddProducte extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         buttonSelectImage.setOnClickListener(v -> openGallery());
+
+        spinnerCategory = findViewById(R.id.spinnerCategory);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.product_categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(adapter);
 
         buttonAddProduct.setOnClickListener(v -> {
             String sellerId = getIntent().getStringExtra("SELLER_ID");
@@ -76,24 +86,31 @@ public class SellerAddProducte extends AppCompatActivity {
         String description = editProductDescription.getText().toString().trim();
         double price = Double.parseDouble(editProductPrice.getText().toString().trim());
         int warrantyPeriod = Integer.parseInt(editWarrantyPeriod.getText().toString().trim());
+        String category = spinnerCategory.getSelectedItem().toString();
 
-        // Convert image to Base64
-        Bitmap bitmap = ((BitmapDrawable) productImageView.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String imageBase64 = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        // Check if imageUri is not null before using it
+        if (imageUri != null) {
+            // Convert image to Base64
+            Bitmap bitmap = ((BitmapDrawable) productImageView.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageBytes = baos.toByteArray();
+            String imageBase64 = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
-        Product product = new Product(name, description, imageBase64, price, warrantyPeriod);
+            String imageUriString = imageUri.toString(); // Use a different variable name
+            Product product = new Product(name, description, imageBase64, imageUriString, price, warrantyPeriod, category);
 
-        // Use the seller ID to add the product under the seller's sub-collection
-        db.collection("Seller").document(sellerId).collection("products")
-                .add(product)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(SellerAddProducte.this, "Product added successfully", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(SellerAddProducte.this, "Error adding product: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+            // Use the seller ID to add the product under the seller's sub-collection
+            db.collection("Seller").document(sellerId).collection("products")
+                    .add(product)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(SellerAddProducte.this, "Product added successfully", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(SellerAddProducte.this, "Error adding product: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(this, "Please select an image before adding the product.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

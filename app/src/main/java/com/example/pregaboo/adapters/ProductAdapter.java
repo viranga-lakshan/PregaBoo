@@ -13,12 +13,19 @@ import java.util.List;
 import android.util.Base64;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import com.bumptech.glide.Glide;
+import android.content.Context;
+import android.content.Intent;
+import com.example.pregaboo.views.EachProducteDetails;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private List<Product> productList;
+    private Context context;
 
-    public ProductAdapter(List<Product> productList) {
+    public ProductAdapter(Context context, List<Product> productList) {
+        this.context = context;
         this.productList = productList;
     }
 
@@ -45,11 +52,41 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             // Set a placeholder image if no image is available
             holder.productImage.setImageResource(R.drawable.placeholder_image);
         }
+
+        // Set click listener on the item view
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EachProducteDetails.class);
+            intent.putExtra("PRODUCT_NAME", product.getName());
+            intent.putExtra("PRODUCT_PRICE", product.getPrice());
+
+            // Save the image to a file and pass the file URI
+            if (base64Image != null && !base64Image.isEmpty()) {
+                byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                try {
+                    File file = new File(context.getCacheDir(), "product_image.png");
+                    FileOutputStream fos = new FileOutputStream(file);
+                    decodedByte.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                    fos.close();
+                    intent.putExtra("PRODUCT_IMAGE_URI", file.getAbsolutePath());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            context.startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
         return productList.size();
+    }
+
+    public void filterList(List<Product> filteredList) {
+        productList = filteredList;
+        notifyDataSetChanged();
     }
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
@@ -63,4 +100,4 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             productImage = itemView.findViewById(R.id.productImage);
         }
     }
-} 
+}

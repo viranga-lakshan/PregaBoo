@@ -45,7 +45,7 @@ public class MomAdapter extends RecyclerView.Adapter<MomAdapter.MomViewHolder> {
             context.startActivity(intent);
         });
     }
-
+    //
     @Override
     public int getItemCount() {
         return momList.size();

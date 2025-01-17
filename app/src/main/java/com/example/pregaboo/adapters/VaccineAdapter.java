@@ -41,15 +41,15 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineV
     }
 
     public static class VaccineViewHolder extends RecyclerView.ViewHolder {
+        TextView dateTextView;
         TextView vaccineNameTextView;
         TextView dosageTextView;
-        TextView dateTextView;
 
         public VaccineViewHolder(@NonNull View itemView) {
             super(itemView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
             vaccineNameTextView = itemView.findViewById(R.id.vaccineNameTextView);
             dosageTextView = itemView.findViewById(R.id.dosageTextView);
-            dateTextView = itemView.findViewById(R.id.dateTextView);
         }
     }
 } 

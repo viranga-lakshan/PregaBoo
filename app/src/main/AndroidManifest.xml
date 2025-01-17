@@ -22,6 +22,21 @@
         android:theme="@style/Theme.PregaBoo"
         tools:targetApi="31">
         <activity
+            android:name=".views.EachProducteDetails"
+            android:exported="false" />
+        <activity
+            android:name=".views.MomBmiChart"
+            android:exported="false" />
+        <activity
+            android:name=".views.AddVaccienceMom"
+            android:exported="false" />
+        <activity
+            android:name=".views.MomDetailsUpdateDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".MomDetailsUpdateDashboard"
+            android:exported="false" />
+        <activity
             android:name=".views.AddBabyClinicDateShedule"
             android:exported="false" />
         <activity

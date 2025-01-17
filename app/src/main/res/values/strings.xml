@@ -54,5 +54,21 @@
         <item>20 weeks</item>
     </string-array>
 
+    <string-array name="product_categories">
+        <item>Maternity Wear</item>
+        <item>Prenatal Care</item>
+        <item>Hospital Bag Essentials</item>
+        <item>Baby Clothing</item>
+        <item>Feeding Essentials</item>
+        <item>Bath and Hygiene</item>
+        <item>Nursery Essentials</item>
+        <item>Travel and Outdoor</item>
+        <item>Safety Products</item>
+        <item>Health and Wellness</item>
+        <item>Gifts and Bundles</item>
+        <item>Eco-Friendly Products</item>
+        <item>Seasonal Items</item>
+    </string-array>
+
 
 </resources>

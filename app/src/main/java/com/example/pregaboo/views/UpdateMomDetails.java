@@ -65,6 +65,13 @@ public class UpdateMomDetails extends AppCompatActivity {
             intent.putExtra("MOM_ID", momId);
             startActivity(intent);
         });
+
+        Button updateMomDetailsButton = findViewById(R.id.updateMomDetailsButton);
+        updateMomDetailsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(UpdateMomDetails.this, MomDetailsUpdateDashboard.class);
+            intent.putExtra("USER_ID", userId);
+            startActivity(intent);
+        });
     }
 
     private void fetchBabies() {
