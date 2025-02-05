@@ -60,12 +60,15 @@
         android:layout_width="339dp"
         android:layout_height="68dp"
         android:layout_marginHorizontal="32dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="80dp"
         android:background="@drawable/img_7"
         android:text="Get Started"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:layout_width="wrap_content"
