@@ -58,6 +58,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             Intent intent = new Intent(context, EachProducteDetails.class);
             intent.putExtra("PRODUCT_NAME", product.getName());
             intent.putExtra("PRODUCT_PRICE", product.getPrice());
+            intent.putExtra("PRODUCT_DESCRIPTION", product.getDescription());
+            intent.putExtra("PRODUCT_WARRANTY", product.getWarrantyPeriod());
+            intent.putExtra("PRODUCT_CATEGORY", product.getCategory());
 
             // Save the image to a file and pass the file URI
             if (base64Image != null && !base64Image.isEmpty()) {

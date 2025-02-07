@@ -83,6 +83,7 @@
                 android:layout_marginTop="16dp">
 
                 <ImageButton
+                    android:id="@+id/btn_mom_details"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_columnWeight="1"

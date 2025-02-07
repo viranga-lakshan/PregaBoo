@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF0F5">
+
+    <!-- Back Button -->
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_x="16dp"
+        android:layout_y="16dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        android:contentDescription="Back" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="56dp"
+        android:layout_y="16dp"
+        android:text="Add Payment Methods"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Name on Card Input -->
+    <EditText
+        android:id="@+id/nameOnCardInput"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_x="16dp"
+        android:layout_y="80dp"
+        android:hint="Name on Card"
+
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC" />
+
+    <!-- Card Number Input -->
+    <EditText
+        android:id="@+id/cardNumberInput"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_x="16dp"
+        android:layout_y="144dp"
+        android:hint="Card Number"
+
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC"
+        android:inputType="number" />
+
+    <!-- Month Dropdown -->
+    <Spinner
+        android:id="@+id/monthDropdown"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_x="16dp"
+        android:layout_y="208dp"
+
+        android:spinnerMode="dropdown" />
+
+    <!-- Year Dropdown -->
+    <Spinner
+        android:id="@+id/yearDropdown"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_x="152dp"
+        android:layout_y="208dp"
+
+        android:spinnerMode="dropdown" />
+
+    <!-- CVC Input -->
+    <EditText
+        android:id="@+id/cvcInput"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_x="288dp"
+        android:layout_y="208dp"
+        android:hint="CVC"
+
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#CCCCCC"
+        android:inputType="numberPassword" />
+
+    <!-- CVC Helper Text -->
+    <TextView
+        android:id="@+id/cvcHelperText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="288dp"
+        android:layout_y="264dp"
+        android:text="3 or 4 digits usually found\non the signature strip"
+        android:textColor="#000000"
+        android:textSize="10sp" />
+
+    <!-- Set as Default Switch -->
+    <Switch
+        android:id="@+id/setDefaultSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="16dp"
+        android:layout_y="288dp"
+        android:text="SET AS DEFAULT"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+    <!-- Add Now Button -->
+    <Button
+        android:id="@+id/addNowButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_x="16dp"
+        android:layout_y="344dp"
+        android:background="#6A5ACD"
+        android:text="Add now"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Mastercard Option -->
+    <LinearLayout
+        android:id="@+id/masterCardOption"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_x="16dp"
+        android:layout_y="400dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:contentDescription="MasterCard" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="MasterCard"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Visa Option -->
+    <LinearLayout
+        android:id="@+id/visaOption"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_x="16dp"
+        android:layout_y="464dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:contentDescription="Visa" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Visa"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</AbsoluteLayout>

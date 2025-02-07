@@ -18,6 +18,7 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageButton profileButton;
     private ImageButton socialButton;
     private ImageButton shopButton;
+    private ImageButton btnMomDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class DashboardActivity extends AppCompatActivity {
         profileButton = findViewById(R.id.profileButton);
         socialButton = findViewById(R.id.socialButton);
         shopButton = findViewById(R.id.shopButton);
+        btnMomDetails = findViewById(R.id.btn_mom_details);
 
         profileButton.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, MomProfileActivity.class);
@@ -41,8 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
                 intent.putExtra("MOM_ID", momId);
                 startActivity(intent);
             } else {
-                Log.e("DashboardActivity", "MOM_ID is null. Cannot start MomProfileActivity.");
-                Toast.makeText(this, "Error: MOM_ID is missing.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashboardActivity.this, "Mom ID not found", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -55,17 +56,19 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(DashboardActivity.this, ShowProducteUsers.class);
             startActivity(intent);
         });
+
+        btnMomDetails.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, MomSeeEachDetailsDashboard.class);
+            startActivity(intent);
+        });
     }
 
     private void checkUserAuthentication() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
-        } else {
-            String momId = currentUser.getUid();
-            saveMomId(momId);
         }
     }
 
@@ -81,17 +84,17 @@ public class DashboardActivity extends AppCompatActivity {
         ImageButton trackButton = findViewById(R.id.tarch_btn);
 
         exerciseButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ExerciseActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, ExerciseActivity.class);
             startActivity(intent);
         });
 
         videoButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ExerciseActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, VideoPlayerActivity.class);
             startActivity(intent);
         });
 
         trackButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrackingToolsActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, TrackingToolsActivity.class);
             startActivity(intent);
         });
     }
