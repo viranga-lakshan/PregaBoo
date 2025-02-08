@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.models.Baby;
-import com.example.pregaboo.views.BabySeeEachDetailsDashboard;
+import com.example.pregaboo.views.UpdateBabyDetails;
 import java.util.List;
 
 public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.BabyViewHolder> {
@@ -37,7 +37,7 @@ public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.BabyViewHolder
         Baby baby = babyList.get(position);
         holder.babyNameTextView.setText(baby.getName());
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, BabySeeEachDetailsDashboard.class);
+            Intent intent = new Intent(context, UpdateBabyDetails.class);
             intent.putExtra("BABY_ID", baby.getBabyId());
             intent.putExtra("USER_ID", userId);
             context.startActivity(intent);
