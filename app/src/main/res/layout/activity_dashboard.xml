@@ -112,13 +112,14 @@
                     android:src="@drawable/img_30" />
 
                 <ImageButton
+                    android:id="@+id/btn_food"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
                     android:background="@drawable/rounded_button_white"
-                    android:src="@drawable/img_24"
-                    android:contentDescription="Reminders" />
+                    android:contentDescription="Reminders"
+                    android:src="@drawable/img_24" />
 
                 <ImageButton
                     android:id="@+id/btn_video"

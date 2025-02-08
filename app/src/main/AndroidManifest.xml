@@ -22,6 +22,33 @@
         android:theme="@style/Theme.PregaBoo"
         tools:targetApi="31">
         <activity
+            android:name=".views.FoodVideo"
+            android:exported="false" />
+        <activity
+            android:name=".views.F"
+            android:exported="false" />
+        <activity
+            android:name=".views.ShowBabyShedule"
+            android:exported="false" />
+        <activity
+            android:name=".views.ShowBabyGrowth"
+            android:exported="false" />
+        <activity
+            android:name=".views.ShowVaccienceBaby"
+            android:exported="false" />
+        <activity
+            android:name=".views.BabySeeEachDetailsDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".views.ShowMomGrowth"
+            android:exported="false" />
+        <activity
+            android:name=".views.ShowSheduleMom"
+            android:exported="false" />
+        <activity
+            android:name=".views.ShowVaccineMom"
+            android:exported="false" />
+        <activity
             android:name=".views.MomSeeEachDetailsDashboard"
             android:exported="false" />
         <activity

@@ -19,6 +19,7 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageButton socialButton;
     private ImageButton shopButton;
     private ImageButton btnMomDetails;
+    private ImageButton btn_food;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
         socialButton = findViewById(R.id.socialButton);
         shopButton = findViewById(R.id.shopButton);
         btnMomDetails = findViewById(R.id.btn_mom_details);
+        btn_food=findViewById(R.id.btn_food);
 
         profileButton.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, MomProfileActivity.class);
@@ -56,10 +58,20 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(DashboardActivity.this, ShowProducteUsers.class);
             startActivity(intent);
         });
+        btn_food.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, FoodVideo.class);
+            startActivity(intent);
+        });
 
         btnMomDetails.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, MomSeeEachDetailsDashboard.class);
-            startActivity(intent);
+            String momId = getCurrentMomId();
+            if (momId != null) {
+                intent.putExtra("MOM_ID", momId);
+                startActivity(intent);
+            } else {
+                Toast.makeText(DashboardActivity.this, "Mom ID not found", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
