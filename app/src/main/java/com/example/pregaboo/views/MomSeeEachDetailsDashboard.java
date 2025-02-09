@@ -40,7 +40,7 @@ public class MomSeeEachDetailsDashboard extends AppCompatActivity {
         Button notesButton = findViewById(R.id.notesButton);
         notesButton.setOnClickListener(v -> {
             Intent intent = new Intent(MomSeeEachDetailsDashboard.this, ShowMidwifeNotesMom.class);
-            intent.putExtra("MOM_ID", momId);
+            intent.putExtra("USER_ID", momId); // Pass the user ID here
             startActivity(intent);
         });
     }
