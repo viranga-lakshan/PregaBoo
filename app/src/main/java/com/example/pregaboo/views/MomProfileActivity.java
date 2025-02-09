@@ -1,6 +1,8 @@
 package com.example.pregaboo.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +36,13 @@ public class MomProfileActivity extends AppCompatActivity {
         babyAdapter = new BabyAdapterForDetailsDashboard(babyList, this, userId);
         babyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         babyRecyclerView.setAdapter(babyAdapter);
+
+        // Add Post Button functionality
+        Button addPostButton = findViewById(R.id.btn_addpost);
+        addPostButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MomProfileActivity.this, CreatePostActivity.class);
+            startActivity(intent);
+        });
 
         fetchBabies();
     }

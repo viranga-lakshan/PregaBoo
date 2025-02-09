@@ -9,6 +9,7 @@ import com.example.pregaboo.R;
 
 public class TrackingToolsActivity extends AppCompatActivity {
     private ImageButton weightTrackerImageButton;
+    private ImageButton kickCounterImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,15 @@ public class TrackingToolsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TrackingToolsActivity.this, ShowMotherWeight.class);
+                startActivity(intent);
+            }
+        });
+
+        kickCounterImageButton = findViewById(R.id.kickCounterImageButton);
+        kickCounterImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrackingToolsActivity.this, KickCounterActivity.class);
                 startActivity(intent);
             }
         });
