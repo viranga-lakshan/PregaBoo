@@ -2,9 +2,9 @@ package com.example.pregaboo.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pregaboo.R;
-import android.widget.Button;
 
 public class MomSeeEachDetailsDashboard extends AppCompatActivity {
     private String momId;
@@ -33,6 +33,13 @@ public class MomSeeEachDetailsDashboard extends AppCompatActivity {
         Button growthButton = findViewById(R.id.growthButton);
         growthButton.setOnClickListener(v -> {
             Intent intent = new Intent(MomSeeEachDetailsDashboard.this, ShowMomGrowth.class);
+            intent.putExtra("MOM_ID", momId);
+            startActivity(intent);
+        });
+
+        Button notesButton = findViewById(R.id.notesButton);
+        notesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MomSeeEachDetailsDashboard.this, ShowMidwifeNotesMom.class);
             intent.putExtra("MOM_ID", momId);
             startActivity(intent);
         });

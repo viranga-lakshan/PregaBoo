@@ -25,10 +25,11 @@ public class MomDetailsUpdateDashboard extends AppCompatActivity {
             return insets;
         });
 
+        String userId = getIntent().getStringExtra("USER_ID");
+
         Button vaccineButton = findViewById(R.id.vaccineButton);
         vaccineButton.setOnClickListener(v -> {
             Intent intent = new Intent(MomDetailsUpdateDashboard.this, AddVaccienceMom.class);
-            String userId = getIntent().getStringExtra("USER_ID");
             intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
@@ -36,7 +37,13 @@ public class MomDetailsUpdateDashboard extends AppCompatActivity {
         Button growthButton = findViewById(R.id.growthButton);
         growthButton.setOnClickListener(v -> {
             Intent intent = new Intent(MomDetailsUpdateDashboard.this, MomBmiChart.class);
-            String userId = getIntent().getStringExtra("USER_ID");
+            intent.putExtra("USER_ID", userId);
+            startActivity(intent);
+        });
+
+        Button notesButton = findViewById(R.id.notesButton);
+        notesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MomDetailsUpdateDashboard.this, MidwifeAddMomNotes.class);
             intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
