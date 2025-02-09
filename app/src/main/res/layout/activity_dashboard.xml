@@ -132,6 +132,7 @@
                     android:src="@drawable/img_31" />
 
                 <ImageButton
+                    android:id="@+id/btn_reminders"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_columnWeight="1"

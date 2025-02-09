@@ -27,7 +27,6 @@ public class BabySeeEachDetailsDashboard extends AppCompatActivity {
         babyId = getIntent().getStringExtra("BABY_ID");
         userId = getIntent().getStringExtra("USER_ID");
 
-
         Button vaccineButton = findViewById(R.id.vaccineButton);
         vaccineButton.setOnClickListener(v -> {
             Intent intent = new Intent(BabySeeEachDetailsDashboard.this, ShowVaccienceBaby.class);

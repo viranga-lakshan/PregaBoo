@@ -20,6 +20,7 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageButton shopButton;
     private ImageButton btnMomDetails;
     private ImageButton btn_food;
+    private ImageButton btnReminders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class DashboardActivity extends AppCompatActivity {
         shopButton = findViewById(R.id.shopButton);
         btnMomDetails = findViewById(R.id.btn_mom_details);
         btn_food = findViewById(R.id.btn_food);
+        btnReminders = findViewById(R.id.btn_reminders);
 
         profileButton.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, MomProfileActivity.class);
@@ -74,6 +76,11 @@ public class DashboardActivity extends AppCompatActivity {
 
         btn_food.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, FoodVideo.class);
+            startActivity(intent);
+        });
+
+        btnReminders.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, Reminders.class);
             startActivity(intent);
         });
     }
