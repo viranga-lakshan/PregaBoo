@@ -26,7 +26,7 @@ public class MomSeeEachDetailsDashboard extends AppCompatActivity {
         Button scheduleButton = findViewById(R.id.scheduleButton);
         scheduleButton.setOnClickListener(v -> {
             Intent intent = new Intent(MomSeeEachDetailsDashboard.this, ShowSheduleMom.class);
-            intent.putExtra("MOM_ID", momId);
+            intent.putExtra("USER_ID", momId); // Pass the user ID here
             startActivity(intent);
         });
 

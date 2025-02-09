@@ -29,7 +29,7 @@ public class TrackingToolsActivity extends AppCompatActivity {
         kickCounterImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TrackingToolsActivity.this, KickCounterActivity.class);
+                Intent intent = new Intent(TrackingToolsActivity.this, KickCounter.class);
                 startActivity(intent);
             }
         });
