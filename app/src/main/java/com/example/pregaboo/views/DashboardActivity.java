@@ -81,7 +81,14 @@ public class DashboardActivity extends AppCompatActivity {
 
         btnReminders.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, Reminders.class);
-            startActivity(intent);
+            String momId = getCurrentMomId();
+            if (momId != null) {
+                intent.putExtra("USER_ID", momId);
+                startActivity(intent);
+            } else {
+                Log.e("DashboardActivity", "USER_ID is null. Cannot start Reminders activity.");
+                Toast.makeText(this, "Error: USER_ID is missing.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
