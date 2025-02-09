@@ -47,5 +47,12 @@ public class MomDetailsUpdateDashboard extends AppCompatActivity {
             intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
+
+        Button scheduleButton = findViewById(R.id.scheduleButton);
+        scheduleButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MomDetailsUpdateDashboard.this, AddSheduleMom.class);
+            intent.putExtra("USER_ID", userId);
+            startActivity(intent);
+        });
     }
 }
