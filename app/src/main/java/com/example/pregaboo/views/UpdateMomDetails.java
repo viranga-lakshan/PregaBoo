@@ -5,23 +5,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsCompat.Type;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.pregaboo.R;
 import com.example.pregaboo.adapters.BabyAdapter;
 import com.example.pregaboo.models.Baby;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateMomDetails extends AppCompatActivity {
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private String momId;
     private RecyclerView babyRecyclerView;
     private BabyAdapter babyAdapter;
@@ -51,9 +57,18 @@ public class UpdateMomDetails extends AppCompatActivity {
         babyRecyclerView = findViewById(R.id.babyRecyclerView);
         babyList = new ArrayList<>();
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            // User is not logged in, redirect to login activity
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
-        babyAdapter = new BabyAdapter(babyList, this, userId);
+        String uid = currentUser.getUid(); // Now safe to call getUid()
+
+        babyAdapter = new BabyAdapter(babyList, this, uid);
         babyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         babyRecyclerView.setAdapter(babyAdapter);
 
@@ -69,9 +84,16 @@ public class UpdateMomDetails extends AppCompatActivity {
         Button updateMomDetailsButton = findViewById(R.id.updateMomDetailsButton);
         updateMomDetailsButton.setOnClickListener(v -> {
             Intent intent = new Intent(UpdateMomDetails.this, MomDetailsUpdateDashboard.class);
-            intent.putExtra("USER_ID", userId);
+            intent.putExtra("USER_ID", uid);
             startActivity(intent);
         });
+
+        // Check Google Play Services before Firebase operations
+        if (!checkPlayServices()) {
+            Toast.makeText(this, "This device is not supported", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
     }
 
     private void fetchBabies() {
@@ -92,5 +114,21 @@ public class UpdateMomDetails extends AppCompatActivity {
                         Log.e("UpdateMomDetails", "Error fetching babies: " + task.getException().getMessage());
                     }
                 });
+    }
+
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i("UpdateMomDetails", "This device is not supported.");
+                return false;
+            }
+            return false;
+        }
+        return true;
     }
 }

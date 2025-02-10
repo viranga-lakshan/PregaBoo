@@ -14,35 +14,35 @@ public class FoodVideoController {
         // Add the new video as the first one
         foodVideos.add(new Food("1",
                 "Delicious Food Recipe | Easy to Cook",
-                "dQw4w9WgXcQ",
-                "https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg",
+                "yhYtM1wNlrA",
+                "https://img.youtube.com/vi/yhYtM1wNlrA/0.jpg",
                 "Learn how to cook delicious food with this easy recipe"));
+
 
         // Add the new video as the second one
         foodVideos.add(new Food("2",
-                "Healthy Food Recipe",
-                "eVTXPUF4Oz4",
-                "https://img.youtube.com/vi/eVTXPUF4Oz4/0.jpg",
-                "Healthy food recipe for a balanced diet"));
+                "Another Delicious Recipe | Must Try",
+                "BlQ8_B1XMLs",
+                "https://img.youtube.com/vi/BlQ8_B1XMLs/0.jpg",
+                "Try this amazing recipe that is both easy and delicious!"));
+
 
         // Keep existing videos
-        foodVideos.add(new Food("3",
-                "Quick and Easy Breakfast",
-                "3JZ_D3ELwOQ",
-                "https://img.youtube.com/vi/3JZ_D3ELwOQ/0.jpg",
-                "Quick and easy breakfast recipes"));
-
         foodVideos.add(new Food("4",
-                "Vegan Recipes for Beginners",
-                "2Vv-BfVoq4g",
-                "https://img.youtube.com/vi/2Vv-BfVoq4g/0.jpg",
-                "Simple vegan recipes for beginners"));
+                "Easy & Delicious Meal | Quick to Prepare",
+                "-flYzSZr1kE",
+                "https://img.youtube.com/vi/-flYzSZr1kE/0.jpg",
+                "Discover this easy and delicious meal you can prepare in no time!"));
+
 
         foodVideos.add(new Food("5",
-                "Gourmet Cooking at Home",
-                "kXYiU_JCYtU",
-                "https://img.youtube.com/vi/kXYiU_JCYtU/0.jpg",
-                "Gourmet cooking techniques for home chefs"));
+                "Healthy & Tasty Recipe | Quick and Easy",
+                "-Wp08eaXd-g",
+                "https://img.youtube.com/vi/-Wp08eaXd-g/0.jpg",
+                "Try this healthy and tasty recipe that's quick and easy to make!"));
+
+
+
 
         onCompleteListener.onComplete(foodVideos);
     }
